@@ -1,0 +1,44 @@
+/* ══════════════════════════════════════
+   RESPONSIVE OVERRIDES
+   Load this file LAST so these rules win
+   the cascade over the component files.
+   ══════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 100px 6vw 60px;
+  }
+  .hero-right {
+    display: none;
+  }
+  .problem-grid {
+    grid-template-columns: 1fr;
+  }
+  .feature-row,
+  .feature-row.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: 32px;
+  }
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  .steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .steps::before {
+    display: none;
+  }
+  .footer-top {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .footer-contact {
+    text-align: left;
+  }
+  .cta-form {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,157 @@
+/* ══════════════════════════════════════
+   BASE — reset, variables, global elements
+   ══════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --navy: #274c78;
+  --navy-dk: #182d4a;
+  --navy-lt: #3a6499;
+  --mag: #b659a0;
+  --mag-lt: #f0dced;
+  --cyan: #00acd0;
+  --cyan-lt: #e0f7fc;
+  --white: #ffffff;
+  --off: #f8f9fc;
+  --text: #1a2b45;
+  --muted: #5a6b82;
+  --border: #e2e8f0;
+
+  /* Shared horizontal edge padding for every full-bleed section.
+     Scales with viewport (6vw) but stops growing past a ~1500px
+     content width, so text doesn't stretch out on ultra-wide/4K
+     screens while staying fluid everywhere else. */
+  --edge: max(5vw, calc((100vw - 1500px) / 2 + 5vw));
+  --edge-sm: max(6vw, 20px);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevents the mobile nav drawer (position:fixed, 100dvh) from
+     ever being able to horizontally scroll the page. */
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+  background: var(--white);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Safety net: any image without its own explicit sizing never
+   forces horizontal overflow. Inline `style="height:36px"` etc.
+   on specific logos still wins, since inline styles always beat
+   external stylesheets. */
+img,
+svg {
+  max-width: 100%;
+}
+
+/* Shared "section intro" block used across multiple sections
+   (Problem, Features, Testimonials, How it works, etc.) */
+section {
+  padding: 96px var(--edge);
+}
+
+.section-intro {
+  max-width: 560px;
+  margin-bottom: 64px;
+}
+
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--mag);
+  margin-bottom: 12px;
+  letter-spacing: 0.01em;
+}
+
+.section-heading {
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 300;
+  color: var(--navy-dk);
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  margin-bottom: 16px;
+}
+
+.section-body {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 480px;
+}
+
+/* Shared buttons — used in Hero and CTA */
+.btn-primary {
+  background: var(--navy);
+  color: white;
+  padding: 13px 28px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    transform 0.1s;
+  display: inline-block;
+}
+.btn-primary:hover {
+  background: var(--navy-dk);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  color: var(--navy);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.15s;
+}
+.btn-ghost:hover {
+  gap: 10px;
+}
+
+.btn-success {
+  background: linear-gradient(97deg, #27ae60, #2ecc71) !important;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: brightness(0.8);
+}
+
+/* Visible keyboard focus everywhere — required for accessibility,
+   and previously missing entirely on this page. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

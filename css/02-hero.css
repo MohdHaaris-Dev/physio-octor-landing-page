@@ -1,0 +1,135 @@
+/* ══════════════════════════════════════
+   HERO
+   ══════════════════════════════════════ */
+
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 120px 6vw;
+  gap: 60px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(182, 89, 160, 0.06) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+.hero-left {
+  max-width: 560px;
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--mag-lt);
+  color: var(--mag);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+  max-width: 100%;
+}
+.hero-kicker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mag);
+  flex-shrink: 0;
+}
+/* The kicker text is wrapped in a span (see index.html) so it can
+   shrink and wrap inside the flex row instead of overflowing the
+   viewport on narrow screens — the classic flex-item text overflow
+   bug that a bare text node would otherwise hit. */
+.hero-kicker-text {
+  min-width: 0;
+}
+
+.hero-headline {
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--navy-dk);
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+}
+.hero-headline em {
+  font-style: italic;
+  color: var(--mag);
+  font-weight: 300;
+}
+
+.hero-body {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-proof {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+.proof-num {
+  font-family: "Fraunces", serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1;
+}
+.proof-num span {
+  color: var(--mag);
+}
+.proof-lbl {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* ── Hero mockup (screenshot on the right) ── */
+.hero-right {
+  position: relative;
+  /* Stops the screenshot's intrinsic size from ever forcing the
+     1fr grid track wider than the column actually has to give. */
+  min-width: 0;
+}
+
+.mockup-shell {
+  background: var(--navy-dk);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow:
+    0 32px 80px rgba(24, 45, 74, 0.3),
+    0 8px 24px rgba(0, 0, 0, 0.15);
+  position: relative;
+}

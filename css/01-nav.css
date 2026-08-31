@@ -1,0 +1,1191 @@
+/* ══════════════════════════════════════
+   NAV
+   ══════════════════════════════════════ */
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 1000;
+
+  padding: 18px 6vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(255, 255, 255, 0.88);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+
+  transition:
+    padding 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* ══════════════════════════════════════
+   SCROLLED NAV
+   ══════════════════════════════════════ */
+
+.site-nav.is-scrolled {
+  padding-top: 13px;
+  padding-bottom: 13px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  box-shadow:
+    0 4px 24px rgba(15, 23, 42, 0.05);
+}
+
+
+/* ══════════════════════════════════════
+   NAV OPEN STATE
+   ══════════════════════════════════════ */
+
+/*
+   The navbar itself moves above the glass menu.
+
+   Its background becomes transparent so the glass
+   panel can occupy the entire screen.
+*/
+
+/* ══════════════════════════════════════
+   OPEN MENU — FLOAT CONTROLS ABOVE GLASS
+   ══════════════════════════════════════ */
+
+/*
+   The navbar itself becomes transparent while
+   the logo and toggle float independently above
+   the glass menu.
+*/
+
+.site-nav.menu-open {
+  z-index: 1200;
+
+  background: transparent;
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  border-bottom-color: transparent;
+
+  box-shadow: none;
+}
+
+
+/* ══════════════════════════════════════
+   FLOATING LOGO
+   ══════════════════════════════════════ */
+
+.site-nav.menu-open .nav-logo {
+  position: fixed;
+
+  top: 18px;
+  left: 6vw;
+
+  z-index: 1201;
+
+  /*
+     Makes the logo feel like it has risen
+     above the frosted surface.
+  */
+  transform:
+    translate3d(0, -1px, 0)
+    scale(1.025);
+
+  transform-origin: left center;
+
+  filter:
+    drop-shadow(
+      0 4px 10px rgba(15, 23, 42, 0.10)
+    );
+
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.45s ease;
+}
+
+
+/*
+   Tiny highlight behind the logo.
+
+   It gives the logo a subtle "floating glass"
+   separation from the panel underneath.
+*/
+
+.site-nav.menu-open .nav-logo::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -7px -10px;
+
+  z-index: -1;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.16);
+
+  box-shadow:
+    0 4px 18px rgba(15, 23, 42, 0.04);
+
+  opacity: 1;
+
+  transition:
+    opacity 0.35s ease;
+}
+
+
+/* ══════════════════════════════════════
+   FLOATING HAMBURGER / CLOSE BUTTON
+   ══════════════════════════════════════ */
+
+.site-nav.menu-open .nav-menu-toggle {
+  position: fixed;
+
+  top: 18px;
+  right: 6vw;
+
+  z-index: 1201;
+
+  /*
+     Frosted glass button.
+  */
+  background:
+    rgba(255, 255, 255, 0.48);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.82);
+
+  /*
+     Layered shadow makes the button look
+     physically separated from the panel.
+  */
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.05),
+    0 10px 30px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+
+  backdrop-filter:
+    blur(12px)
+    saturate(140%);
+
+  -webkit-backdrop-filter:
+    blur(12px)
+    saturate(140%);
+
+  /*
+     Slight lift + scale.
+  */
+  transform:
+    translate3d(0, -1px, 0)
+    scale(1.025);
+
+  transform-origin: center;
+
+  filter:
+    drop-shadow(
+      0 3px 8px rgba(15, 23, 42, 0.06)
+    );
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    filter 0.45s ease;
+}
+
+
+/*
+   Hover while the menu is open.
+
+   Since it's now a close button, give it a
+   slightly more deliberate interaction.
+*/
+
+.site-nav.menu-open .nav-menu-toggle:hover {
+  background:
+    rgba(255, 255, 255, 0.68);
+
+  border-color:
+    rgba(255, 255, 255, 0.95);
+
+  transform:
+    translate3d(0, -2px, 0)
+    scale(1.045);
+
+  box-shadow:
+    0 6px 14px rgba(15, 23, 42, 0.06),
+    0 14px 34px rgba(15, 23, 42, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+
+/*
+   Active state keeps the interaction tactile.
+*/
+
+.site-nav.menu-open .nav-menu-toggle:active {
+  transform:
+    translate3d(0, 0, 0)
+    scale(0.96);
+}
+
+
+/* ══════════════════════════════════════
+   X TRANSFORMATION
+   ══════════════════════════════════════ */
+
+.site-nav.menu-open
+.nav-menu-toggle.is-open span:nth-child(1) {
+  transform:
+    translate3d(0, 6.5px, 0)
+    rotate(45deg);
+}
+
+.site-nav.menu-open
+.nav-menu-toggle.is-open span:nth-child(2) {
+  width: 0;
+
+  opacity: 0;
+}
+
+.site-nav.menu-open
+.nav-menu-toggle.is-open span:nth-child(3) {
+  transform:
+    translate3d(0, -6.5px, 0)
+    rotate(-45deg);
+}
+
+
+/* ══════════════════════════════════════
+   MOBILE POSITIONING
+   ══════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  .site-nav.menu-open .nav-logo {
+    top: 14px;
+    left: 5vw;
+  }
+
+  .site-nav.menu-open .nav-menu-toggle {
+    top: 14px;
+    right: 5vw;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .site-nav.menu-open .nav-logo {
+    top: 13px;
+    left: 4.5vw;
+  }
+
+  .site-nav.menu-open .nav-menu-toggle {
+    top: 13px;
+    right: 4.5vw;
+  }
+}
+
+
+
+/* ══════════════════════════════════════
+   LOGO
+   ══════════════════════════════════════ */
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+
+  text-decoration: none;
+
+  flex-shrink: 0;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.nav-logo:hover {
+  transform: translateY(-1px);
+}
+
+.nav-logo img {
+  display: block;
+
+  width: auto;
+  height: 36px;
+  max-width: 100%;
+}
+
+
+/*
+   When the menu opens, the logo leaves the navbar
+   and becomes a fixed element sitting above the
+   glass panel.
+*/
+
+.site-nav.menu-open .nav-logo {
+  position: fixed;
+
+  top: 20px;
+  left: 6vw;
+
+  z-index: 1201;
+
+  transform: translateY(0);
+}
+
+
+/* ══════════════════════════════════════
+   DESKTOP NAV
+   ══════════════════════════════════════ */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+
+  gap: 32px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.nav-links a {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  font-size: 0.875rem;
+  line-height: 1.2;
+
+  color: var(--muted);
+
+  text-decoration: none;
+  font-weight: 400;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* Underline animation */
+
+.nav-links a:not(.nav-cta)::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -6px;
+
+  width: 100%;
+  height: 1px;
+
+  background: var(--navy);
+
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition:
+    transform 0.25s ease;
+}
+
+.nav-links a:not(.nav-cta):hover {
+  color: var(--navy);
+}
+
+.nav-links a:not(.nav-cta):hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+/* ══════════════════════════════════════
+   DESKTOP CTA
+   ══════════════════════════════════════ */
+
+.nav-cta {
+  background: var(--navy);
+  color: white !important;
+
+  padding: 9px 20px;
+
+  border-radius: 7px;
+
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease !important;
+}
+
+.nav-cta:hover {
+  background: var(--navy-dk) !important;
+  color: white !important;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 6px 16px rgba(45, 57, 103, 0.18);
+}
+
+
+/* ══════════════════════════════════════
+   MOBILE MENU TOGGLE
+   ══════════════════════════════════════ */
+
+.nav-menu-toggle {
+  display: none;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  gap: 5px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nav-menu-toggle:hover {
+  background: white;
+
+  border-color:
+    rgba(203, 213, 225, 1);
+
+  transform: translateY(-1px);
+}
+
+.nav-menu-toggle:active {
+  transform: scale(0.95);
+}
+
+.nav-menu-toggle span {
+  display: block;
+
+  width: 18px;
+  height: 1.5px;
+
+  background: var(--navy);
+
+  border-radius: 2px;
+
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease,
+    width 0.2s ease;
+}
+
+
+/* ══════════════════════════════════════
+   MOBILE TOGGLE OPEN STATE
+   ══════════════════════════════════════ */
+
+/*
+   The button becomes fixed and sits directly
+   above the glass panel.
+*/
+
+.site-nav.menu-open .nav-menu-toggle {
+  position: fixed;
+
+  top: 18px;
+  right: 6vw;
+
+  z-index: 1201;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  border-color:
+    rgba(255, 255, 255, 0.8);
+
+  box-shadow:
+    0 4px 18px rgba(15, 23, 42, 0.08);
+}
+
+
+/*
+   Hamburger → X
+*/
+
+.nav-menu-toggle.is-open span:nth-child(1) {
+  transform:
+    translateY(6.5px)
+    rotate(45deg);
+}
+
+.nav-menu-toggle.is-open span:nth-child(2) {
+  width: 0;
+
+  opacity: 0;
+}
+
+.nav-menu-toggle.is-open span:nth-child(3) {
+  transform:
+    translateY(-6.5px)
+    rotate(-45deg);
+}
+
+
+/* ══════════════════════════════════════
+   MOBILE NAV WRAPPER
+   ══════════════════════════════════════ */
+
+.mobile-nav-wrapper {
+  position: fixed;
+  inset: 0;
+
+  z-index: 1100;
+
+  visibility: hidden;
+
+  pointer-events: none;
+}
+
+.mobile-nav-wrapper.is-open {
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+
+/*
+   During closing we intentionally keep the wrapper
+   visible so the reverse animation can play.
+*/
+
+.mobile-nav-wrapper.is-closing {
+  visibility: visible;
+
+  pointer-events: none;
+}
+
+
+/* ══════════════════════════════════════
+   GLASS OVERLAY
+   ══════════════════════════════════════ */
+
+.mobile-nav-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(181, 89, 161, 0.12),
+      transparent 35%
+    ),
+    rgba(15, 23, 42, 0.38);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  opacity: 0;
+
+  transition:
+    opacity 0.45s ease,
+    backdrop-filter 0.45s ease;
+}
+
+.mobile-nav-wrapper.is-open .mobile-nav-overlay {
+  opacity: 1;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.mobile-nav-wrapper.is-closing .mobile-nav-overlay {
+  opacity: 0;
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+
+/* ══════════════════════════════════════
+   FULL-WIDTH GLASS PANEL
+   ══════════════════════════════════════ */
+
+.mobile-nav {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+
+  min-height: min(100px, 100dvh);
+
+  padding:
+    11px
+    6vw
+    42px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.82),
+      rgba(248, 250, 252, 0.68)
+    );
+
+  backdrop-filter:
+    blur(28px)
+    saturate(130%);
+
+  -webkit-backdrop-filter:
+    blur(28px)
+    saturate(130%);
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.75);
+
+  box-shadow:
+    0 20px 60px rgba(15, 23, 42, 0.14),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+
+  /*
+     OPEN STATE:
+     starts above viewport.
+  */
+
+  transform:
+    translateY(-105%)
+    scale(0.98);
+
+  transform-origin: top center;
+
+  opacity: 0;
+
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+
+  overflow: hidden;
+}
+
+
+/* ══════════════════════════════════════
+   GLASS HIGHLIGHT
+   ══════════════════════════════════════ */
+
+.mobile-nav::before {
+  content: "";
+
+  position: absolute;
+
+  top: -40%;
+  right: -10%;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.45);
+
+  filter: blur(50px);
+
+  pointer-events: none;
+}
+
+
+/* Bottom glass highlight */
+
+.mobile-nav::after {
+  content: "";
+
+  position: absolute;
+
+  left: 6vw;
+  right: 6vw;
+  bottom: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.9),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+
+/* ══════════════════════════════════════
+   PANEL OPEN
+   ══════════════════════════════════════ */
+
+.mobile-nav-wrapper.is-open .mobile-nav {
+  transform:
+    translateY(0)
+    scale(1);
+
+  opacity: 1;
+}
+
+
+/* ══════════════════════════════════════
+   PANEL CLOSING
+   ══════════════════════════════════════ */
+
+.mobile-nav-wrapper.is-closing .mobile-nav {
+  transform:
+    translateY(-105%)
+    scale(0.98);
+
+  opacity: 0;
+}
+
+
+/* ══════════════════════════════════════
+   MOBILE HEADER
+   ══════════════════════════════════════ */
+
+.mobile-nav-header {
+  position: relative;
+
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /*
+     The header spans the full width and MENU
+     stays mathematically centered.
+  */
+
+  min-height: 42px;
+
+  padding: 10px 52px 28.5px;
+
+  border-bottom:
+    1px solid rgba(203, 213, 225, 0.55);
+
+  opacity: 0;
+
+  transform:
+    translateY(-8px);
+
+  transition:
+    opacity 0.3s ease 0.12s,
+    transform 0.4s ease 0.12s;
+}
+
+
+/* MENU enters */
+
+.mobile-nav-wrapper.is-open .mobile-nav-header {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+
+/* MENU leaves */
+
+.mobile-nav-wrapper.is-closing .mobile-nav-header {
+  opacity: 0;
+
+  transform:
+    translateY(-8px);
+
+  transition-delay: 0s;
+}
+
+
+/* ══════════════════════════════════════
+   MENU LABEL
+   ══════════════════════════════════════ */
+
+.mobile-nav-title {
+  font-size: 0.72rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  color: var(--muted);
+
+  text-align: center;
+}
+
+
+/* ══════════════════════════════════════
+   MOBILE LINKS
+   ══════════════════════════════════════ */
+
+.mobile-nav-links {
+  position: relative;
+
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+
+  margin: 0;
+
+  padding: 28px 0 0;
+
+  list-style: none;
+}
+
+.mobile-nav-links li {
+  opacity: 0;
+
+  transform:
+    translateY(22px);
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ══════════════════════════════════════
+   STAGGERED OPEN
+   ══════════════════════════════════════ */
+
+.mobile-nav-wrapper.is-open
+.mobile-nav-links li:nth-child(1) {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+
+  transition-delay: 0.12s;
+}
+
+.mobile-nav-wrapper.is-open
+.mobile-nav-links li:nth-child(2) {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+
+  transition-delay: 0.17s;
+}
+
+.mobile-nav-wrapper.is-open
+.mobile-nav-links li:nth-child(3) {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+
+  transition-delay: 0.22s;
+}
+
+.mobile-nav-wrapper.is-open
+.mobile-nav-links li:nth-child(4) {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+
+  transition-delay: 0.27s;
+}
+
+
+/* ══════════════════════════════════════
+   STAGGERED CLOSE
+   ══════════════════════════════════════ */
+
+.mobile-nav-wrapper.is-closing
+.mobile-nav-links li:nth-child(1) {
+  opacity: 0;
+
+  transform:
+    translateY(-12px);
+
+  transition-delay: 0s;
+}
+
+.mobile-nav-wrapper.is-closing
+.mobile-nav-links li:nth-child(2) {
+  opacity: 0;
+
+  transform:
+    translateY(-12px);
+
+  transition-delay: 0.025s;
+}
+
+.mobile-nav-wrapper.is-closing
+.mobile-nav-links li:nth-child(3) {
+  opacity: 0;
+
+  transform:
+    translateY(-12px);
+
+  transition-delay: 0.05s;
+}
+
+.mobile-nav-wrapper.is-closing
+.mobile-nav-links li:nth-child(4) {
+  opacity: 0;
+
+  transform:
+    translateY(-12px);
+
+  transition-delay: 0.075s;
+}
+
+
+/* ══════════════════════════════════════
+   MOBILE LINKS
+   ══════════════════════════════════════ */
+
+.mobile-nav-links a {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  padding: 15px 12px;
+
+  border-radius: 9px;
+
+  color: var(--navy);
+
+  text-decoration: none;
+
+  font-size:
+    clamp(1.05rem, 3vw, 1.25rem);
+
+  font-weight: 450;
+
+  letter-spacing: -0.01em;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    padding-left 0.25s ease;
+}
+
+.mobile-nav-links a:hover {
+  background:
+    rgba(255, 255, 255, 0.55);
+
+  padding-left: 17px;
+}
+
+
+/* ══════════════════════════════════════
+   MOBILE CTA
+   ══════════════════════════════════════ */
+
+.mobile-nav-links .mobile-nav-cta {
+  justify-content: center;
+
+  margin-top: 18px;
+
+  padding: 14px 20px;
+
+  background: var(--navy);
+
+  color: white;
+
+  font-size: 0.95rem;
+
+  font-weight: 500;
+
+  box-shadow:
+    0 8px 24px rgba(45, 57, 103, 0.16);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mobile-nav-links .mobile-nav-cta:hover {
+  background: var(--navy-dk);
+
+  color: white;
+
+  padding-left: 20px;
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 12px 28px rgba(45, 57, 103, 0.22);
+}
+
+.mobile-nav-links .mobile-nav-cta:active {
+  transform:
+    translateY(0);
+}
+
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  .site-nav {
+    padding: 14px 5vw;
+  }
+
+  .site-nav.is-scrolled {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+
+  .nav-logo img {
+    height: 32px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-menu-toggle {
+    display: flex;
+  }
+
+  /*
+     Open-state controls use the mobile spacing.
+  */
+
+  .site-nav.menu-open .nav-logo {
+    top: 14px;
+    left: 5vw;
+  }
+
+  .site-nav.menu-open .nav-menu-toggle {
+    top: 14px;
+    right: 5vw;
+  }
+
+  .mobile-nav {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .mobile-nav::after {
+    left: 5vw;
+    right: 5vw;
+  }
+}
+
+
+/* ══════════════════════════════════════
+   SMALL PHONES
+   ══════════════════════════════════════ */
+
+@media (max-width: 480px) {
+
+  .site-nav {
+    padding: 13px 4.5vw;
+  }
+
+  .nav-menu-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .site-nav.menu-open .nav-logo {
+    top: 13px;
+    left: 4.5vw;
+  }
+
+  .site-nav.menu-open .nav-menu-toggle {
+    top: 13px;
+    right: 4.5vw;
+  }
+
+  .mobile-nav {
+    padding-left: 4.5vw;
+    padding-right: 4.5vw;
+
+    padding-bottom: 32px;
+  }
+
+  .mobile-nav::after {
+    left: 4.5vw;
+    right: 4.5vw;
+  }
+  .mobile-nav-links {
+    padding-top: 22px;
+  }
+
+  .mobile-nav-links a {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+}
+
+
+/* ══════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .site-nav,
+  .nav-logo,
+  .nav-links a,
+  .nav-menu-toggle,
+  .nav-menu-toggle span,
+  .mobile-nav-wrapper,
+  .mobile-nav-overlay,
+  .mobile-nav,
+  .mobile-nav-header,
+  .mobile-nav-links li,
+  .mobile-nav-links a,
+  .mobile-nav-close,
+  .mobile-nav-links .mobile-nav-cta {
+    transition: none !important;
+  }
+}

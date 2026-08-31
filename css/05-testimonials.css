@@ -1,0 +1,166 @@
+/* ══════════════════════════════════════
+   TESTIMONIALS
+   ══════════════════════════════════════ */
+
+.testimonials {
+  background: var(--navy-dk);
+  padding: 96px 6vw;
+}
+.testimonials .section-label {
+  color: rgba(255, 255, 255, 0.5);
+}
+.testimonials .section-heading {
+  color: white;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 28px;
+  margin-top: 56px;
+}
+
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle shimmer effect on hover */
+.testimonial-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+.testimonial-card:hover::before {
+  left: 100%;
+}
+
+/* Featured card style - keep it distinct */
+.testimonial-card.featured {
+  background: var(--mag);
+  border-color: transparent;
+  grid-column: span 1;
+}
+.testimonial-card:not(.featured):hover {
+  background: var(--mag);
+  border-color: transparent;
+  box-shadow: 0 12px 40px rgba(182, 89, 160, 0.3);
+}
+
+.testimonial-card .testimonial-quote,
+.testimonial-card .person-name,
+.testimonial-card .person-role {
+  transition: color 0.3s ease;
+}
+.testimonial-card:not(.featured):hover .testimonial-quote {
+  color: white;
+}
+.testimonial-card:not(.featured):hover .person-role {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.testimonial-quote {
+  font-family: "Fraunces", serif;
+  font-size: 1rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  flex: 1;
+  transition: all 0.3s ease;
+}
+.testimonial-card.featured .testimonial-quote {
+  color: white;
+  font-size: 1.05rem;
+}
+
+.testimonial-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.person-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+/* Slight avatar animation on hover (disabled — left here on purpose)
+.testimonial-card:not(.featured):hover .person-avatar {
+  transform: scale(1.1) rotate(-5deg);
+} */
+
+.person-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+  line-height: 1.2;
+  transition: all 0.3s ease;
+}
+.person-role {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 1px;
+  transition: all 0.3s ease;
+}
+.testimonial-card.featured .person-role {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.testimonials-clinic-badge {
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px 28px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 40px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.3s ease;
+}
+.testimonials-clinic-badge:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.clinic-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+}
+.clinic-badge-text {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+.clinic-badge-text strong {
+  color: white;
+}

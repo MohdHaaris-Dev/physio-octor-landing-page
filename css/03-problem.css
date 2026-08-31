@@ -1,0 +1,53 @@
+/* ══════════════════════════════════════
+   PROBLEM
+   ══════════════════════════════════════ */
+
+.problem {
+  background: var(--off);
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  background: var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.problem-card {
+  background: white;
+  padding: 32px 28px;
+}
+
+.problem-icon {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.problem-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.problem-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.problem-arrow {
+  text-align: center;
+  padding: 48px 0;
+  grid-column: 1/-1;
+  background: white;
+  border-top: 2px solid var(--border);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.problem-arrow strong {
+  color: var(--navy);
+}
