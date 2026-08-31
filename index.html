@@ -2068,4 +2068,106 @@
   })();
 </script>
 
+<script>
+  (function() {
+    'use strict';
+
+    // ============================================
+    // 1. DISABLE RIGHT CLICK
+    // ============================================
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // ============================================
+    // 2. DISABLE COMMON DEV TOOLS SHORTCUTS
+    // ============================================
+    document.addEventListener('keydown', function(e) {
+      // F12
+      if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Ctrl+Shift+I (Windows/Linux)
+      // Cmd+Option+I (Mac)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Ctrl+Shift+J (Windows/Linux) - Console
+      // Cmd+Option+J (Mac) - Console
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Ctrl+Shift+C (Windows/Linux) - Element Inspector
+      // Cmd+Option+C (Mac) - Element Inspector
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Ctrl+U (View Source)
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Ctrl+Shift+U (View Source on some browsers)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // ============================================
+    // 3. DETECT DEV TOOLS OPEN (Advanced)
+    // ============================================
+    // This detects if DevTools is open by checking element size
+    // Only works in some browsers
+    let devToolsOpen = false;
+    
+    function checkDevTools() {
+      const threshold = 160; // pixels
+      const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+      const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+      
+      if (widthThreshold || heightThreshold) {
+        if (!devToolsOpen) {
+          devToolsOpen = true;
+          console.warn('DevTools detected!');
+          // Optional: Redirect or show a message
+          // window.location.href = '/blocked.html';
+        }
+      } else {
+        devToolsOpen = false;
+      }
+    }
+    
+    // Check every 2 seconds
+    setInterval(checkDevTools, 2000);
+
+    // ============================================
+    // 4. DISABLE DRAG (Optional)
+    // ============================================
+    document.addEventListener('dragstart', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // ============================================
+    // 5. CONSOLE WARNING
+    // ============================================
+    console.log('%cDeveloper Tools Detected', 'font-size: 20px; color: red; font-weight: bold;');
+    console.log('%cThis is a production environment. Please be careful!', 'font-size: 14px; color: orange;');
+    
+    console.log('Form with API integration initialized.');
+
+  })();
+</script>
+
 </html>
